@@ -47,27 +47,42 @@ table {
 }
 
 /*---------------------------------My actual CSS---------------------------------*/
-.container{
+.row{
+    margin-right: 0;
+    margin-left: 0;
+}
+.container-fluid{
     background-image: url(../images/prism/prism.png);
-
+}
+.toprow{
+    background-color: #fff;
 }
 .name-box{
-    background-color: black;
+    background-color: #4aaaa5;
     font-family: 'Georgia', 'Times', 'Times New Roman', serif;
     color: white;
     font-size: 40px;
     border: 2px solid #ccc;
+    padding: 10px;
 }
-.header1{
+.navigationbar-background{
     background-color: #fff;
     border-bottom: 2px #ccc solid; 
 }
+.linklocation{
+    margin-top: 10px;
+}
+.container{
+    background-color: #fff;
+}
+
 .header2{
     background-color: #fff;
 }
 .about{
     color: #777777;
     font: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+    border-right: 2px solid #ccc;
 }
 
 .contact{    
@@ -78,6 +93,8 @@ table {
 .portfolio{
     color: #777777;
     font: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+    border-right: 2px solid #ccc;
+
 }
 
 
@@ -85,7 +102,6 @@ table {
     font-size: 40px;
     color: #4aaaa5;
     border-bottom: #ccc 2px solid;
-
 }
 
 .mainbody{
@@ -102,7 +118,7 @@ table {
 }
 
 .imgabout{
-    
+    margin: 0 auto 0 auto;
 }
 
 /* ---------------------------------Portfolio--------------------------------- */
@@ -131,3 +147,17 @@ table {
     color: #fff;
     font-size: 20px;
 }
+/*---------------------------------Media queries---------------------------------*/
+@media only screen and (max-width: 640px){
+    .toprow{width: 100%;}
+    .name-box{width: 620px;text-align: center;}
+    .container{width: 620px;}
+    .col{width: 100%;}
+    .justify-content-end{margin-right: auto; margin-left: auto;}
+    .mainbodyheader{width: 100%;}
+    .imgabout{width: 100%;}
+    
+    @media only screen and (min-width: 640px){
+        .toprow {width: 768px;}
+    }
+    
