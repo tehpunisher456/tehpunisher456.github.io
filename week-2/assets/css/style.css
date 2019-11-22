@@ -75,7 +75,10 @@ table {
 .container{
     background-color: #fff;
 }
-
+.container-fluid{ 
+    padding-top: 20px;
+    padding-bottom: 100%;
+}
 .header2{
     background-color: #fff;
 }
@@ -119,6 +122,7 @@ table {
 
 .imgabout{
     margin: 0 auto 0 auto;
+    width: 300px;
 }
 
 /* ---------------------------------Portfolio--------------------------------- */
@@ -139,6 +143,40 @@ table {
     padding: 20px;
     color: #4aaaa5;
 }
+/* ---------------------------------Contact--------------------------------- */
+
+input[type=text],select{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=message],select{
+    width: 100%;
+    padding: 50px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #4aaaa5;
+    color: #fff;
+}
+
 /* ---------------------------------Footer--------------------------------- */
 .footer{ 
     border-top: 8px solid #4aaaa5;
@@ -146,9 +184,24 @@ table {
     font: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
     color: #fff;
     font-size: 20px;
+    padding: 40px;
+    text-align: center;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
 }
 /*---------------------------------Media queries---------------------------------*/
-@media only screen and (max-width: 640px){
+@media only screen and (min-width: 640px) {
+    .toprow {width: 768px;}
+    .name-box{width: 768px;text-align: center;}
+    .container{width: 720px;}
+    .col{width: 100%;}
+    .mainbodyheader{width: 100%;}
+    .imgabout{width: 300px;}
+}
+
+@media only screen and (max-width: 640px) {
     .toprow{width: 100%;}
     .name-box{width: 620px;text-align: center;}
     .container{width: 620px;}
@@ -156,8 +209,4 @@ table {
     .justify-content-end{margin-right: auto; margin-left: auto;}
     .mainbodyheader{width: 100%;}
     .imgabout{width: 100%;}
-    
-    @media only screen and (min-width: 640px){
-        .toprow {width: 768px;}
-    }
-    
+}
