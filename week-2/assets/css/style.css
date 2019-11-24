@@ -179,10 +179,6 @@ input[type=submit] {
     color: #fff;
 }
 
-.contactwidth{
-
-}
-
 /* ---------------------------------Footer--------------------------------- */
 .footer{ 
     border-top: 8px solid #4aaaa5;
@@ -208,10 +204,6 @@ input[type=submit] {
     .imgabout{width: 300px;}
     input[type=text],select{ width: 280%;}
     input[type=message],select{width: 280%;}
-    
-
-
-
 }
 
 @media only screen and (min-width: 640px) and (max-width:768px){
@@ -223,7 +215,6 @@ input[type=submit] {
     .imgabout{width: 340px; height: 225px; float: left;}
     input[type=text],select{width: 205%;}
     input[type=message],select{width: 205%;}
-    
 }
 
 @media only screen and (max-width: 640px) {
