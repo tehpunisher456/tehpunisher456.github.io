@@ -42,6 +42,9 @@ function options() {
         return;
     }
 
+
+
+
     var passOp = {
         passLength: passLength,
         specCharOpt: specCharOpt,
@@ -49,9 +52,11 @@ function options() {
         lowerCasedCharOpt: lowerCasedCharOpt,
         upperCasedCharOpt: upperCasedCharOpt
     };
-
+    console.log(passOp)
     return passOp;
 }
+
+
 
 function ranArray(arr) {
     var randomValue = Math.floor(Math.random() * arr.passLength)
@@ -61,7 +66,7 @@ function ranArray(arr) {
 
 }
 
-function genPassword (){
+function genPassword() {
     var varOptions = options();
     var result = [];
     var possibleCharacters = [];
@@ -69,14 +74,65 @@ function genPassword (){
 
     if (varOptions.specCharOpt) {
         possibleCharacters = possibleCharacters.concat(specChar);
-        guaranteedCharacters.push(getRandom(specChar));
+        guaranteedCharacters.push(ranArray(specChar));
+        console.log(guaranteedCharacters)
+    }
+    if (options.numCharOpt) {
+        possibleCharacters = possibleCharacters.concat(numCharOpt);
+        guaranteedCharacters.push(ranArray(numCharOpt));
+    }
 
+    if (options.lowerCasedCharOpt) {
+        possibleCharacters = possibleCharacters.concat(lowerCasedCharOpt);
+        guaranteedCharacters.push(ranArray(lowerCasedCharOpt));
+    }
 
+    if (options.hasUpperCasedCharacters) {
+        possibleCharacters = possibleCharacters.concat(upperCasedCharacters);
+        guaranteedCharacters.push(ranArray(upperCasedCharacters));
+    }
 
+    for (var i = 0; i < options.passLength; i++) {
+        var possibleCharacter = ranArray(possibleCharacters);
+
+        result.push(possibleCharacter);
+    }
+
+    for (var i = 0; i < guaranteedCharacters.passLength; i++) {
+        result[i] = guaranteedCharacters[i];
+    }
+
+    // Transform the result into a string and pass into writePassword
+    return result.join("");
 }
 
-
-
+var copyBtn = document.querySelector("#copy");
 var generateBtn = document.querySelector("#generate");
 
-generateBtn.addEventListener("click", options)
+
+function writePassword() {
+    var password = genPassword();
+    var passwordText = document.querySelector("#password");
+
+    passwordText.value = password;
+
+    copyBtn.removeAttribute("disabled");
+    copyBtn.focus();
+}
+
+function copyToClipboard() {
+    var passwordText = document.querySelector("#password");
+
+    passwordText.select();
+    document.execCommand("copy");
+
+    alert(
+        "Your password " + passwordText.value + " was copied to your clipboard."
+    );
+}
+
+generateBtn.addEventListener("click", writePassword);
+
+copyBtn.addEventListener("click", copyToClipboard);
+
+
