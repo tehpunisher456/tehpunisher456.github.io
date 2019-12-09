@@ -42,9 +42,6 @@ function options() {
         return;
     }
 
-
-
-
     var passOp = {
         passLength: passLength,
         specCharOpt: specCharOpt,
@@ -52,19 +49,24 @@ function options() {
         lowerCasedCharOpt: lowerCasedCharOpt,
         upperCasedCharOpt: upperCasedCharOpt
     };
-    console.log(passOp)
+
+    console.log(passLength)
     return passOp;
 }
-
-
 
 function ranArray(arr) {
     var randomValue = Math.floor(Math.random() * arr.passLength)
     var randElement = arr[randomValue];
+    console.log(passLength)
+    return randElement;
+}
+function getRandom(arr) {
+    var randIndex = Math.floor(Math.random() * arr.length);
+    var randElement = arr[randIndex];
 
     return randElement;
-
 }
+
 
 function genPassword() {
     var varOptions = options();
@@ -102,7 +104,6 @@ function genPassword() {
         result[i] = guaranteedCharacters[i];
     }
 
-    // Transform the result into a string and pass into writePassword
     return result.join("");
 }
 
