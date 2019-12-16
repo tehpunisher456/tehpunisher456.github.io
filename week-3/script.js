@@ -60,13 +60,6 @@ function ranArray(arr) {
     console.log(passLength)
     return randElement;
 }
-function getRandom(arr) {
-    var randIndex = Math.floor(Math.random() * arr.length);
-    var randElement = arr[randIndex];
-
-    return randElement;
-}
-
 
 function genPassword() {
     var varOptions = options();
