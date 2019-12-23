@@ -31,8 +31,9 @@
   <script type="text/javascript">
 
 // // // // // // // // Generate HTML
+var time = [9, 10, 11, 12, 1, 2, 3, 4, 5]
+
     function test() {
-      var time = [9, 10, 11, 12, 1, 2, 3, 4, 5]
       var timeNow = moment().hour()
 
       for (var i = 0; i < time.length; i++) {
@@ -67,6 +68,8 @@
           inputHtml.addClass("future")
         }
         inputHtml.attr("placeholder", " ")
+        inputHtml.attr("id", "textArea-" + time[i])
+        inputHtml.text(localStorage.getItem("savedRow-" +time[i]))
         $(".input-"+time[i]).append(inputHtml)
 
         var inputGroupAppend = $("<div>")
@@ -91,6 +94,7 @@
         }
       }
     }
+
     test()
 
 // // // // // // // // // // moment.js Date  creator
@@ -104,7 +108,40 @@ dateCreator.addClass("date-today");
 dateCreator.text(dayText + ", " + month + " " + dateToday + " " + year)
 $(".jumbotron").append(dateCreator)
 
-// // // // // // // // // moment.js color changer
+// // // // // // // // //local storage save
+  $("#save-button-9").on("click", function(){
+    localStorage.setItem("savedRow-9", document.querySelector("#textArea-9").value)
+  })
+  $("#save-button-10").on("click", function(){
+    localStorage.setItem("savedRow-10", document.querySelector("#textArea-10").value)
+  })
+  $("#save-button-11").on("click", function(){
+    localStorage.setItem("savedRow-11", document.querySelector("#textArea-11").value)
+  })
+  $("#save-button-12").on("click", function(){
+    localStorage.setItem("savedRow-12", document.querySelector("#textArea-12").value)
+  })
+  $("#save-button-1").on("click", function(){
+    localStorage.setItem("savedRow-1", document.querySelector("#textArea-1").value)
+  })
+  $("#save-button-2").on("click", function(){
+    localStorage.setItem("savedRow-2", document.querySelector("#textArea-2").value)
+  })
+  $("#save-button-3").on("click", function(){
+    localStorage.setItem("savedRow-3", document.querySelector("#textArea-3").value)
+  })
+  $("#save-button-4").on("click", function(){
+    localStorage.setItem("savedRow-4", document.querySelector("#textArea-4").value)
+  })
+  $("#save-button-5").on("click", function(){
+    localStorage.setItem("savedRow-5", document.querySelector("#textArea-5").value)
+  })
+
+
+
+
+
+
 
 
 
