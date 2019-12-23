@@ -10,6 +10,7 @@
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="javascript" href="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js">
   <title>Work Day Scheduler</title>
 </head>
 
@@ -18,38 +19,68 @@
     <h1 class="display-3">Work Day Scheduler</h1>
     <p class="lead">A simple calendar app for scheduling your work day</p>
     <p id="currentDay" class="lead"></p>
+    <div class="date-today"></div>
   </header>
-  <div class="container">
-  </div>
+  <div class="container"></div>
+
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
+
   <script type="text/javascript">
+
+// // // // // // // // Generate HTML
     function test() {
       var time = [9, 10, 11, 12, 1, 2, 3, 4, 5]
+      var timeNow = moment().hour()
 
       for (var i = 0; i < time.length; i++) {
-        var divRow = $("<div>")
-        divRow.addClass("row redrow " + time[i])
-        $(".container").append(divRow)
+        var divInput = $("<div>")
+          divInput.addClass("input-group mb-3 input-" + time[i])
+          divInput.attr("rows", "3")
+        $(".container").append(divInput)
 
-        var divRow2 = $("<div>")
-        divRow2.addClass("col-1 whitecol")
-        divRow2.attr("id", time[i])
-        $("." + time[i]).append(divRow2)
+        var divPrepend = $("<div>")
+        divPrepend.addClass("input-group-prepend time-" + time[i])
+        divPrepend.attr("id", time[i])
+        $(".input-"+time[i]).append(divPrepend)
 
-        var divForm = $("<form>");
-        divForm.attr("id", "form-" + time[i])
-        $("." + time[i]).append(divForm)
+        var spanInsert = $("<span>")
+          spanInsert.addClass("input-group-text")
+          spanInsert.text(time[i])
+          $("time-" + time[i])
+
+// creates text areas. Also handles color changing
+        var rowTime = time[i]
+        if (rowTime < 9){
+        rowTime +=12
+        }
+        var inputHtml = $("<textarea>")
+        inputHtml.attr("type", "text")
+        inputHtml.addClass("form-control")
+        if (timeNow > rowTime){
+          inputHtml.addClass("past")
+        } else if(timeNow == rowTime){
+          inputHtml.addClass("present")
+        }else {
+          inputHtml.addClass("future")
+        }
+        inputHtml.attr("placeholder", " ")
+        $(".input-"+time[i]).append(inputHtml)
+
+        var inputGroupAppend = $("<div>")
+          inputGroupAppend.addClass("input-group-append")
+          $(".input-"+time[i]).append(inputGroupAppend)
+
+        var inputButton = $("<button>")
+          inputButton.addClass("btn btn-outline-secondary saveBtn fas fa-save")
+          inputButton.attr("type", "button")
+          inputButton.attr("id", "save-button-" +time[i])
+
+          $(".input-"+time[i]).append(inputButton)
       }
-
-      var divRow3 = $("<div>")
-      divRow3.addClass("col-1 offset-md-10 bluecol")
-      $(".redrow").append(divRow3)
-
-
-      var insertTime
+// // // // // // // // // // sets AM or PM
       for (var i = 0; i < time.length; i++) {
         if (i + 9 == 9 || i + 9 == 10 || i + 9 == 11 || i + 9 == 12) {
           $("#" + time[i]).text(time[i] + " AM")
@@ -61,6 +92,20 @@
       }
     }
     test()
+
+// // // // // // // // // // moment.js Date  creator
+var dayText = moment().format("dddd")
+var dateToday = moment().format("Do")
+var month = moment().format("MMMM")
+var year= moment().format("YYYY")
+
+var dateCreator = $("<div>")
+dateCreator.addClass("date-today");
+dateCreator.text(dayText + ", " + month + " " + dateToday + " " + year)
+$(".jumbotron").append(dateCreator)
+
+// // // // // // // // // moment.js color changer
+
 
 
   </script>
