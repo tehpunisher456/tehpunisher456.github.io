@@ -13,3 +13,9 @@
 .button-addon2:active{
     background-color: yellow;
 }
+.search-results{
+    max-height: 400px;
+    overflow: scroll;
+}
+
+
