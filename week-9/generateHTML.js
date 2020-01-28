@@ -170,7 +170,47 @@ function generateHTML(data) {
             zoom: .75; 
           } 
          }
-      </style>`
+      </style>
+      <body>
+    <div class="wrapper container">
+        <div class="photo-header">
+            <img src="https://knowpathology.com.au/app/uploads/2018/07/Happy-Test-Screen-01-825x510.png" alt="image">
+            <h1>Hi!</h1>
+            <h2>My name is oof!</h2>
+            <h4>Currently @ I wonder where</h4>
+            <div class="links-nav"> 
+                <a href="">This one is supposed to be a location</a>
+                <a href="">GitHub</a>
+                <a href="">Blog</a>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="contain">testing for location
+            <div class="row">
+                <div class="card col">
+                  <h4>Public Repositories</h4>
+                </div>
+                <div class="card col">
+                  <h4>Followers</h4>
+                </div>    
+            </div>
+            <div class="row">
+                <div class="card col">
+                  <h4>GitHub Stars</h4>
+                </div>
+                <div class="card col">
+                  <h4>Following</h4>
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
+</body>`
         }
 
 
