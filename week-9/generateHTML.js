@@ -24,8 +24,13 @@ const colors = {
     photoBorderColor: "white"
   }
 };
+function generateHTML(res, answers) {
+  var company = "student"
+if (res.data.company !== null){
+  company = res.data.company;
+}
+  
 
-function generateHTML(data) {
   return `<!DOCTYPE html>
 <html lang="en">
    <head>
@@ -52,7 +57,7 @@ function generateHTML(data) {
          height: 100%;
          }
          .wrapper {
-         background-color: ${colors[data.color].wrapperBackground};
+         background-color: ${colors[answers.color].wrapperBackground};
          padding-top: 100px;
          }
          body {
@@ -94,8 +99,8 @@ function generateHTML(data) {
          display: flex;
          justify-content: center;
          flex-wrap: wrap;
-         background-color: ${colors[data.color].headerBackground};
-         color: ${colors[data.color].headerColor};
+         background-color: ${colors[answers.color].headerBackground};
+         color: ${colors[answers.color].headerColor};
          padding: 10px;
          width: 95%;
          border-radius: 6px;
@@ -106,7 +111,7 @@ function generateHTML(data) {
          border-radius: 50%;
          object-fit: cover;
          margin-top: -75px;
-         border: 6px solid ${colors[data.color].photoBorderColor};
+         border: 6px solid ${colors[answers.color].photoBorderColor};
          box-shadow: rgba(0, 0, 0, 0.3) 4px 1px 20px 4px;
          }
          .photo-header h1, .photo-header h2 {
@@ -149,8 +154,8 @@ function generateHTML(data) {
          .card {
            padding: 20px;
            border-radius: 6px;
-           background-color: ${colors[data.color].headerBackground};
-           color: ${colors[data.color].headerColor};
+           background-color: ${colors[answers.color].headerBackground};
+           color: ${colors[answers.color].headerColor};
            margin: 20px;
          }
          
@@ -174,34 +179,42 @@ function generateHTML(data) {
       <body>
     <div class="wrapper container">
         <div class="photo-header">
-            <img src="https://knowpathology.com.au/app/uploads/2018/07/Happy-Test-Screen-01-825x510.png" alt="image">
+            <img src="${res.data.avatar_url}" alt="image">
             <h1>Hi!</h1>
-            <h2>My name is oof!</h2>
-            <h4>Currently @ I wonder where</h4>
+            <h2>My name is ${res.data.name}!</h2>
+            <h4>Currently @ ${company}</h4>
             <div class="links-nav"> 
-                <a href="">This one is supposed to be a location</a>
-                <a href="">GitHub</a>
-                <a href="">Blog</a>
+                <a class = "nav-link" href="https://www.google.com/maps/place/${res.data.location}">${res.data.location}</a>
+                <a class = "nav-link" href="https://github.com/${res.data.login}">GitHub</a>
+                <a class = "nav-link" href="${res.data.blog}">Blog</a>
             </div>
         </div>
         <br>
         <br>
         <br>
-        <div class="contain">testing for location
+        <div class="contain">
+        <div class="col">
+        <h1>${res.data.bio}</h1>
+        </div>
             <div class="row">
                 <div class="card col">
                   <h4>Public Repositories</h4>
+                  <h1>${res.data.public_repos}</h1>
                 </div>
                 <div class="card col">
                   <h4>Followers</h4>
+                  <h1>${res.data.followers}</h1>
                 </div>    
             </div>
             <div class="row">
                 <div class="card col">
                   <h4>GitHub Stars</h4>
+                  <h1>${res.data.stars}</h1>
+
                 </div>
                 <div class="card col">
                   <h4>Following</h4>
+                  <h1>${res.data.following}</h1>
                 </div>
 
 
@@ -213,4 +226,4 @@ function generateHTML(data) {
 </body>`
         }
 
-
+exports.generateHTML = generateHTML;
