@@ -227,3 +227,6 @@ if (res.data.company !== null){
         }
 
 exports.generateHTML = generateHTML;
+
+
+
