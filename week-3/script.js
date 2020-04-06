@@ -13,6 +13,7 @@ var lowerCasedChar = [
 var upperCasedChar = [
     "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
 ];
+var passOpOut = ""
 
 function options() {
     var passLength = parseInt(prompt(
@@ -49,66 +50,50 @@ function options() {
         lowerCasedCharOpt: lowerCasedCharOpt,
         upperCasedCharOpt: upperCasedCharOpt
     };
-
-    console.log(passLength)
+    passOpOut = passOp
     return passOp;
 }
 
-function ranArray(arr) {
-    var randomValue = Math.floor(Math.random() * arr.passLength)
-    var randElement = arr[randomValue];
-    console.log(passLength)
-    return randElement;
-}
-
+var userPassword = ""
+var passwordGroup = ""
+var generatedPassword = ""
 function genPassword() {
-    var varOptions = options();
-    var result = [];
-    var possibleCharacters = [];
-    var guaranteedCharacters = [];
+    options()
 
-    if (varOptions.specCharOpt) {
-        possibleCharacters = possibleCharacters.concat(specChar);
-        guaranteedCharacters.push(ranArray(specChar));
-        console.log(guaranteedCharacters)
+    if (passOpOut.lowerCasedCharOpt) {
+        passwordGroup += lowerCasedChar;
     }
-    if (options.numCharOpt) {
-        possibleCharacters = possibleCharacters.concat(numCharOpt);
-        guaranteedCharacters.push(ranArray(numCharOpt));
+    if (passOpOut.upperCasedCharOpt) {
+        passwordGroup += upperCasedChar;
     }
-
-    if (options.lowerCasedCharOpt) {
-        possibleCharacters = possibleCharacters.concat(lowerCasedCharOpt);
-        guaranteedCharacters.push(ranArray(lowerCasedCharOpt));
+    if (passOpOut.numCharOpt) {
+        passwordGroup += numChar;
     }
-
-    if (options.hasUpperCasedCharacters) {
-        possibleCharacters = possibleCharacters.concat(upperCasedCharacters);
-        guaranteedCharacters.push(ranArray(upperCasedCharacters));
+    if (passOpOut.specCharOpt) {
+        passwordGroup += specChar;
     }
-
-    for (var i = 0; i < options.passLength; i++) {
-        var possibleCharacter = ranArray(possibleCharacters);
-
-        result.push(possibleCharacter);
+    for (let i = 0; i < passOpOut.passLength; i++) {
+        userPassword += passwordGroup.charAt(
+            Math.floor(Math.random() * passwordGroup.length)
+        );
     }
+    return userPassword;
 
-    for (var i = 0; i < guaranteedCharacters.passLength; i++) {
-        result[i] = guaranteedCharacters[i];
-    }
-
-    return result.join("");
 }
+
+
 
 var copyBtn = document.querySelector("#copy");
 var generateBtn = document.querySelector("#generate");
 
 
 function writePassword() {
+
     var password = genPassword();
+
     var passwordText = document.querySelector("#password");
 
-    passwordText.value = password;
+    passwordText.innerHTML = password;
 
     copyBtn.removeAttribute("disabled");
     copyBtn.focus();
@@ -128,5 +113,3 @@ function copyToClipboard() {
 generateBtn.addEventListener("click", writePassword);
 
 copyBtn.addEventListener("click", copyToClipboard);
-
-
