@@ -1,0 +1,23 @@
+.col-4{
+    background-color: red;
+}
+.col-8{
+    background-color: green;
+}
+.search-bar{
+    margin-top: 20px;
+}
+.list-bottom{
+    margin-bottom: 20px;
+}
+.button-addon2:active{
+    background-color: yellow;
+}
+.search-results{
+    max-height: 400px;
+    overflow: scroll;
+}
+
+.fas{
+    color: white;
+}

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4"> Weather Dashboard</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <div class="list-group">
+                    <div class="row ">
+                        <br>
+                        <div class="input-group mb-3 container search-bar">
+                            <input type="text" class="form-control" placeholder="Enter City Name"
+                                aria-label="Recipient's username" aria-describedby="button-addon2" id="search-field">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary btn-outline-secondary fas fa-search" type="button"
+                                    id="button-addon2"></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="list-group-item list-group-item-action"
+                        id="sideButton1">Austin</button>
+                    <button type="button" class="list-group-item list-group-item-action"
+                        id="sideButton2">Chicago</button>
+                    <button type="button" class="list-group-item list-group-item-action" id="sideButton3">New
+                        York</button>
+                    <button type="button" class="list-group-item list-group-item-action"
+                        id="sideButton4">Orlando</button>
+                    <button type="button" class="list-group-item list-group-item-action" id="sideButton5">San
+                        Francisco</button>
+                    <button type="button" class="list-group-item list-group-item-action"
+                        id="sideButton6">Seattle</button>
+                    <button type="button" class="list-group-item list-group-item-action"
+                        id="sideButton7">Denver</button>
+                    <button type="button" class="list-group-item list-group-item-action"
+                        id="sideButton8">Atlanta</button>
+                    <button type="button" class="list-group-item list-group-item-action list-bottom"
+                        id="sideButton9">Los Angeles</button>
+                </div>
+            </div>
+
+            <div class="col-9">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="city"></div>
+                            <div class="wind"></div>
+                            <div class="humidity"></div>
+                            <div class="temp"></div>
+                            <div class="uv"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="card" style="width: 10rem; background-color: #007bff;color: white; margin-left: 15px; margin-top: 15px;">
+                        <div class="card-body">
+                            <h5 class="card-title" id="date-1"></h5>
+                            <p class="card-text" id="list-1"></p>
+                            <p class="card-text" id="list-1.5"></p>
+                        </div>
+                    </div>
+
+                    <div class="card" style="width: 10rem; background-color: #007bff;color: white; margin-left: 15px; margin-top: 15px;">
+                        <div class="card-body">
+                            <h5 class="card-title" id="date-2"></h5>
+                            <p class="card-text" id="list-2"></p>
+                            <p class="card-text" id="list-2.5"></p>
+                        </div>
+                    </div>
+
+                    <div class="card" style="width: 10rem; background-color: #007bff;color: white; margin-left: 15px; margin-top: 15px;">
+                        <div class="card-body">
+                            <h5 class="card-title" id="date-3"></h5>
+                            <p class="card-text" id="list-3"></p>
+                            <p class="card-text" id="list-3.5"></p>
+                        </div>
+                    </div>
+
+                    <div class="card" style="width: 10rem; background-color: #007bff;color: white; margin-left: 15px; margin-top: 15px;">
+                        <div class="card-body">
+                            <h5 class="card-title" id="date-4"></h5>
+                            <p class="card-text" id="list-4"></p>
+                            <p class="card-text" id="list-4.5"></p>
+                        </div>
+                    </div>
+
+                    <div class="card" style="width: 10rem; background-color: #007bff;color: white; margin-left: 15px; margin-top: 15px;">
+                        <div class="card-body">
+                            <h5 class="card-title" id="date-5"></h5>
+                            <p class="card-text" id="list-5"></p>
+                            <p class="card-text" id="list-5.5"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            var search = "los angeles"
+
+            function Lookup(SearchResults) {
+                // This is our API key
+                var APIKey = "7cee38685c42a8f20d82266e925737b9";
+
+                // Here we are building the URL we need to query the database
+                var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + SearchResults +
+                    "&units=imperial&appid=" + APIKey;
+                var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + SearchResults +
+                    "&units=imperial&appid=" + APIKey;
+
+                // Here we run our AJAX call to the OpenWeatherMap API
+                $.ajax({
+                        url: queryURL,
+                        method: "GET"
+                    })
+                    // We store all of the retrieved data inside of an object called "response"
+                    .then(function (response) {
+
+                        // Transfer content to HTML
+                        $(".city").html("<h1>" + response.name + " Weather</h1>");
+                        $(".wind").text("Wind Speed: " + response.wind.speed + " Miles Per Hour");
+                        $(".humidity").text("Humidity: " + response.main.humidity + "%");
+                        $(".temp").text("Temperature: " + response.main.temp + " Degrees Fahrenheit");
+
+                        // Converts the temp to Kelvin with the below formula
+                        var tempF = (response.main.temp - 273.15) * 1.80 + 32;
+                        $(".tempF").text("Temperature (Kelvin) " + tempF);
+
+                        // Log the data in the console as well
+                        var latVar = "lat=" + response.coord.lat
+                        var lonVar = "lon=" + response.coord.lon
+                        var uvURL = "http://api.openweathermap.org/data/2.5/uvi?appid=" + APIKey + "&" + latVar +
+                            "&" + lonVar;
+                        $.ajax({
+                                url: uvURL,
+                                method: "get"
+                            })
+                            .then(function (response2) {
+                                $(".uv").text("UV index: " + response2.value)
+                            })
+                    });
+
+                $.ajax({
+                        url: forecastURL,
+                        method: "GET"
+                    })
+                    .then(function (response3) {
+                        console.log(response3.list[2])
+                        var list1 = response3.list[2];
+                        var list2 = response3.list[8];
+                        var list3 = response3.list[14];
+                        var list4 = response3.list[20];
+                        var list5 = response3.list[26];
+
+                        var fullDate = new Date()
+
+                        var twoDigitMonth = fullDate.getMonth() + 1 + "";
+                        if (twoDigitMonth.length == 1) twoDigitMonth = "0" + twoDigitMonth;
+
+                        var twoDigitDate = fullDate.getDate() + "";
+                        if (twoDigitDate.length == 1) twoDigitDate = "0" + twoDigitDate;
+
+                        var twoDigitDate2 = fullDate.getDate() + 1 +"";
+                        if (twoDigitDate.length == 1) twoDigitDate = "0" + twoDigitDate;
+
+                        var twoDigitDate3 = fullDate.getDate() + 2 +"";
+                        if (twoDigitDate.length == 1) twoDigitDate = "0" + twoDigitDate;
+
+                        var twoDigitDate4 = fullDate.getDate() + 3 +"";
+                        if (twoDigitDate.length == 1) twoDigitDate = "0" + twoDigitDate;
+
+                        var twoDigitDate5 = fullDate.getDate() + 4 +"";
+                        if (twoDigitDate.length == 1) twoDigitDate = "0" + twoDigitDate;
+
+                        var currentDate = twoDigitMonth + "/" + twoDigitDate + "/" + fullDate.getFullYear();
+                        var currentDate2 = twoDigitMonth + "/" + twoDigitDate2 + "/" + fullDate.getFullYear();
+                        var currentDate3 = twoDigitMonth + "/" + twoDigitDate3 + "/" + fullDate.getFullYear();
+                        var currentDate4 = twoDigitMonth + "/" + twoDigitDate4 + "/" + fullDate.getFullYear();
+                        var currentDate5 = twoDigitMonth + "/" + twoDigitDate5 + "/" + fullDate.getFullYear();
+
+
+                        $("#date-1").text(currentDate);
+                        $("#list-1").text("Temp: " + list1.main.temp + " degrees F");
+                        $("#list-1.5").text("Humidity: " + list1.main.humidity + "%")
+
+                        $("#date-2").text(currentDate2);
+                        $("#list-2").text("Temp: " + list2.main.temp + " degrees F");
+                        $("#list-2.5").text("Humidity: " + list2.main.humidity + "%")
+                        
+                        $("#date-3").text(currentDate3);
+                        $("#list-3").text("Temp: " + list3.main.temp + " degrees F");
+                        $("#list-3.5").text("Humidity: " + list3.main.humidity + "%")
+
+                        $("#date-4").text(currentDate4);
+                        $("#list-4").text("Temp: " + list4.main.temp + " degrees F");
+                        $("#list-4.5").text("Humidity: " + list4.main.humidity + "%")
+
+                        $("#date-5").text(currentDate5);
+                        $("#list-5").text("Temp: " + list5.main.temp + " degrees F");
+                        $("#list-5.5").text("Humidity: " + list5.main.humidity + "%")
+                        // 8, 14, 20, 26
+
+                    })
+
+            }
+
+
+            $("#button-addon2").on("click", function (event) {
+                event.preventDefault();
+                var search = $("#search-field").val().trim();
+                Lookup(search);
+            })
+
+            $("#sideButton1").on("click", function () {
+                event.preventDefault()
+                var buttonClicked = document.getElementById("sideButton1").innerText
+                Lookup(buttonClicked)
+            })
+            $("#sideButton2").on("click", function () {
+                event.preventDefault()
+                var buttonClicked = document.getElementById("sideButton2").innerText
+                Lookup(buttonClicked)
+            })
+            $("#sideButton3").on("click", function () {
+                event.preventDefault()
+                var buttonClicked = document.getElementById("sideButton3").innerText
+                Lookup(buttonClicked)
+            })
+            $("#sideButton4").on("click", function () {
+                event.preventDefault()
+                var buttonClicked = document.getElementById("sideButton4").innerText
+                Lookup(buttonClicked)
+            })
+            $("#sideButton5").on("click", function () {
+                event.preventDefault()
+                var buttonClicked = document.getElementById("sideButton5").innerText
+                Lookup(buttonClicked)
+            })
+            $("#sideButton6").on("click", function () {
+                event.preventDefault()
+                var buttonClicked = document.getElementById("sideButton6").innerText
+                Lookup(buttonClicked)
+            })
+            $("#sideButton7").on("click", function () {
+                event.preventDefault()
+                var buttonClicked = document.getElementById("sideButton7").innerText
+                Lookup(buttonClicked)
+            })
+            $("#sideButton8").on("click", function () {
+                event.preventDefault()
+                var buttonClicked = document.getElementById("sideButton8").innerText
+                Lookup(buttonClicked)
+            })
+            $("#sideButton9").on("click", function () {
+                event.preventDefault()
+                var buttonClicked = document.getElementById("sideButton9").innerText
+                Lookup(buttonClicked)
+            })
+
+            Lookup(search)
+        </script>
+</body>
+
+</html>

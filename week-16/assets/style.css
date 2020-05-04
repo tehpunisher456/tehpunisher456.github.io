@@ -1,0 +1,37 @@
+h1 {
+    color: green;
+}
+
+.jumbotron {
+    border: grey 1px solid;
+    padding: 30px;
+    margin-top: 15px;
+}
+
+.left-column {
+    border: grey 1px solid;
+    margin: 0px 0px 15px -15px
+
+}
+
+.container {
+    border: grey 1px solid;
+    background-color:#404040
+}
+
+.row {
+    margin-left: 15px;
+}
+.footer{
+    background-color: #505050;
+    margin: 15px 0px
+}
+body{
+    background-image: url(./Images/Free-Professional-Dark-Carbon-Patterns.jpg)
+}
+a{
+    color: grey;
+}
+.bg-light{
+    background-color: 0;
+}
